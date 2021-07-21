@@ -24,3 +24,6 @@ _________
 #### Data files provided give the following datasets:
 
 
+
+
+Use covid_K12_data.xlsx, covidUpdated_04162021.csv and USA_States_Data.csv to run the following:
