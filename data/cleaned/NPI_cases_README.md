@@ -20,3 +20,19 @@ Data acquired on github from COVID-19 Data Repository by the Center for Systems 
 
 The Lakdawala Lab at the University of Pittsburgh restructured the JHU CSSE COVID-19 Data acquired from github and produced the number of new daily cases and deaths as well as the cumulative cases and deaths in a format which fit our project needs. 
 
+|  Column 	|   Information	|
+|---	|---	|
+|   STATE	|   State name|
+|   LATITUDE	|   In degrees	|
+|  LONGITUDE 	| In degrees  	|
+|   SQMI	| State land area in square miles  	|
+|   STUSAB	|  State name abbreviation 	|
+|  DATE 	|   Date of Cases recorded and/or NPI effective	|
+|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS0 number, used for geographic location identification 	|
+|   EVENT_CATG_S	|  A code given to distinguish between the different NPI actions, see belwo for more information about each 	|
+|  SCORE 	|  State NPI score given based on scoring rubric 	|
+|   GNISID	|   Geographic Names Identification System ID	|
+|   RESTRICTIONS	|  restrictions currently being implemented? 1= yes, 0=no 	|
+|   PHASED_REOPENING	|  Phased reopening currently being implmented? 1=yes, 0= no 	|
+| COUNTYOPEN  	|   Opening at the county level? 1=yes, 0=no	|
+|   FACECOVER_RQD	|  Masks/face coverings required? 1=yes, 0=no 	|
