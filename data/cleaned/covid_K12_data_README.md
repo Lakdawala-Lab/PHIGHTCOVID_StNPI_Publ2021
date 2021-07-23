@@ -9,3 +9,26 @@ USA_States_Data.csv acquired through MCH Strategic Data. COVID-19 impact: school
 https://www.mchdata.com/covid19/schoolclosings 
 
 
+|  Field 	|  Information 	|
+|---	|---	|
+|  SchoolYear 	|  school year 	|
+|  DistrictName 	|   name of the school district	|
+|  Control 	|  public or private control of a school district 	|
+|  PhysicalCity 	|  physical city area encompassing the school location (can include smaller cities, town, villages) 	|
+|  PhysicalState 	|  state of a school location 	|
+|  Enrollment_1 	|   entire school district total student enrollment	|
+|   OpenDate	|   date school opened for 2020-2021 school year	|
+|   TeachingMethod	|   teaching method used	|
+|   SportsParticipation	|   sports participation	|
+|   OnlineInstructionIncrease	|   online instruction increase	|
+|   NetworkInvestment	|  network investment by school 	|
+|  HardwareInvestment 	|  hardware investment by school 	|
+|   StaffMaskPolicy	|   school staff mask policy	|
+|   StudentMaskPolicy	| school student mask policy  	|
+|  StudentIllnessReturnPolicy 	|  student illness return policy existence 	|
+|   StudentIsolationArea	|  are in school for students to be isolated 	|
+|   SchoolTemporaryShutdown	|  school temporary shutdown (never closed, pending, or if yes then list the duration) 	|
+|   ParentOptOutClassroomTeaching	|  Are parents given the ability to opt out of in-person classroom teaching 	|
+|   LastVertifiedDate	|   date the information in this dataset was last verified	|
+|   District_nces	|   nces added as different field type for a data merge (by Annika Avery)	|
+|  OpenDateGrouped 	|   school opening date grouped by most common days to reopen (by Annika Avery)	|
