@@ -1,0 +1,475 @@
+---
+title: "Covid BSpline"
+authors: Alvin Pan (Adapted from Rory Michelen https://towardsdatascience.com/using-b-splines-and-k-means-to-cluster-time-series-16468f588ea6)
+output:
+  word_document:
+    toc: no
+  pdf_document:
+    toc: no
+  html_document:
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+Andrew IDs: qpan
+---
+
+---------import library packages and datasets
+
+```{r}
+library(graphics)
+library("readxl")
+library(dplyr)
+library(tidyverse)
+library(np)
+library(GauPro)
+library("GPfit")
+library("lhs")
+library(splines)
+library(ggplot2)
+library(maps)
+library(mapdata)
+library("viridis")
+library(RColorBrewer)
+```
+
+
+
+---------Function interfaces
+
+
+```{r}
+# extract top n states with the most people
+top_pop_states <- function(data, n=5) {
+  d = data %>% group_by(STATE) %>% summarize(POPULATION = mean(POPULATION, na.rm = TRUE))
+  return (top_n(d, n=n, wt=POPULATION)[[1]])                          
+}
+```
+
+
+```{r}
+# plot covid cases for top population states
+plot_states <- function(data, states, feature, x=1, y=1) {
+  # top_states = top_pop_states(covid, n)
+  par(mfrow=c(x,y), mar=c(4,4,2,0.5)) # Setup grid, margins
+  for (state in states) {
+    d = data %>% filter(STATE == state)
+    plot(d$DATE, d[,feature], xlab = "Time", ylab = feature, main = paste("COVID cases in", state), pch = 20, cex = 0.5)
+  }
+}
+```
+
+
+
+```{r}
+# This function outputs the corresponding optimal parameter given the regression method: spline, kernel or GP
+calc_opt_para <- function(data, feature, dates, method="spline") {
+  n = dim(data)[1]
+  m = n%%5
+  err.mat = matrix(rep(0, 5*50), ncol = 5)
+  
+  if (m == 0) {
+    samp = sample(rep(1:5, n%/%5), replace = FALSE)
+  } else {
+    samp = sample(c(rep(1:5, n%/%5),1:m), replace = FALSE)
+  }
+  
+  
+  if (method == "spline") {
+    dfs = 2:51
+    for (df in dfs) {
+      for (k in 1:5) {
+        testd <- data[samp == k, ] 
+        traind <- data[!(samp == k), ]
+        train.rows = nrow(traind)
+        sm = smooth.spline(traind[,feature]~dates[!(samp == k)], df=df)
+        sm.pred = predict(sm, dates[samp == k])$y
+        err.mat[df-1,k] = mean((sm.pred-testd[,feature])^2)
+      }
+    }
+    df.err.means = apply(err.mat, 1, mean)
+    best.df = dfs[which.min(df.err.means)]
+    
+    return(best.df)
+    
+  } else { #kernel regression
+    bs = 2:51
+    for (b in bs) {
+      for (k in 1:5) {
+        testd <- data[samp == k, ] 
+        traind <- data[!(samp == k), ]
+        train.rows = nrow(traind)
+        gm = npreg(dates[!(samp == k)], traind[,feature], bws = b)
+        gm.pred = predict(gm, newdata=dates[samp == k])
+        err.mat[b-1,k] = mean((gm.pred-testd[,feature])^2)
+      }
+    }
+    bws.err.means = apply(err.mat, 1, mean)
+    print(bws.err.means)
+    best.bw = bs[which.min(bws.err.means)]
+    
+    
+    return(best.bw)
+  }
+}
+```
+
+
+
+```{r}
+# returns the spline model given the feature and state
+state.spline.model <- function(data, state, feature, df=NULL) {
+  data = subset(data, !is.na(DATE) & !is.na(data[, feature]))
+  d = data %>% filter(STATE == state)
+  dates = as.numeric(d$DATE)
+  if (is.null(df)) {
+     df = calc_opt_para(d, feature, dates, "spline")
+  }
+  sm = smooth.spline(d[,feature]~dates, df=df)
+}
+```
+
+
+```{r}
+# returns basis of the spline to be modelled
+spline.basis <- function(data, n.knots=15, degree=3) {
+  X <- as.matrix(data)
+  x=seq(0,1,length.out=nrow(X))
+  knots = seq(0,1,length.out = n.knots-2)
+  return (bs(x, knots = knots, degree = 3)[,1:(n.knots)])
+}
+```
+
+
+
+```{r}
+# shows heatmap of the basis
+B.heatmap <- function(B) {
+  return (B%>%
+  as.data.frame()%>%
+  mutate(rw=row_number())%>%
+  gather(key='key',value='value','1':'6')%>%
+  ggplot(aes(x=key,y=rw,fill=value))+geom_tile()+
+  labs(title='B-Spline Basis with 6 knots and 3rd-Degree Polynomials',x='Knot',y='Date'))
+}
+
+# shows multiple curves based on knots/partitions of the basis
+B.basis.plot <- function(B, n.knots=10) {
+  return(B%>%
+  as.data.frame()%>%
+  mutate(rw=row_number())%>%
+  gather(key='key',value='value',`1`:paste(n.knots))%>%
+  ggplot(aes(x=rw,y=value,col=key))+geom_line(aes(group=key))+
+  labs(title=paste('B-Spline Basis with ', n.knots, ' knots and 3rd-Degree Polynomials', sep='')))
+}
+```
+
+```{r}
+B.basis.plot(spline.basis(covid.com, n.knots=15), n.knots=15)
+```
+
+```{r}
+# get spline model and return knots and spline predictions of training data
+bspline.model <- function(data, dates, n.knots=6, degree=3) {
+  X <- as.matrix(data)
+  x=seq(0,1,length.out=nrow(X))
+  knots = seq(0,1,length.out = n.knots-2)
+  B = bs(x, knots = knots, degree = 3)[,1:(n.knots)]
+  
+  Bcoef = matrix(0,1,n.knots)
+  Bcoef[1,] = solve(t(B)%*%B)%*%t(B)%*%as.matrix(X[,2])
+  
+  preds = (Bcoef%*%t(B))[1,]
+  l = list()
+  l[[1]] = Bcoef[1,]
+  l[[2]] = preds
+  return (l)
+}
+```
+
+```{r}
+# get spline model and return knots and spline predictions of training data
+bspline.basis <- function(data, dates, n.knots=6, degree=3) {
+  X <- as.matrix(data)
+  x=seq(0,1,length.out=nrow(X))
+  knots = seq(0,1,length.out = n.knots-2)
+  B = bs(x, knots = knots, degree = 3)[,1:(n.knots)]
+  
+  Bcoef = matrix(0,1,n.knots)
+  Bcoef[1,] = solve(t(B)%*%B)%*%t(B)%*%as.matrix(X[,2])
+  
+  preds = (Bcoef%*%t(B))[1,]
+  l = list()
+  l[[1]] = Bcoef[1,]
+  l[[2]] = B
+  l[[3]] = preds
+  return (l)
+}
+```
+
+
+
+```{r}
+# This function plots the bspline curves for given states as well as their corresponding weighted basis polynomials
+plot.basis.com <- function(data, states, feature, n.knots=6, degree=3, x=1, y=1) {
+  # top_states = top_pop_states(covid, n)
+  # par(mfrow=c(x,y), mar=c(4,4,2,0.5)) # Setup grid, margins
+  data = data %>% subset(!is.na(data[, feature]))
+  n = length(states)
+  colors = rainbow(n.knots)
+  Bcoef.mat = matrix(0,n,n.knots)
+  fmt <- "%b-%Y" # format for axis labels
+  
+  for (i in 1:n) {
+    plot(c(min(data$DATE), max(data$DATE)), c(min(data[,feature]), 50), xlab = "Time", ylab = feature, main = paste(states[i], "COVID basis demonstration"), type = "n", xaxt='n', pch = 20, cex = 0.5)
+    d = data %>% filter(STATE == states[i]) %>% select("DATE", contains(feature))
+    dates = d$DATE
+    d$DATE = as.numeric(d$DATE)
+    l = bspline.basis(d, dates, n.knots, degree)
+    lines(dates, l[[3]], pch = 20, cex = 1, col="black")
+    for (j in 1:n.knots) {
+      l[[2]][,j] = l[[1]][j] * l[[2]][,j]
+      lines(dates, l[[2]][,j], pch = 20, cex = 1, col=colors[j])
+    }
+    # print(paste(c("Basis", n.knots), 1:n.knots, as.character(l[[1]])))
+    legend("topleft", legend=c("Estimated Spline", paste(rep("Basis", n.knots), 1:n.knots, rep("coef:", n.knots) , as.character(round(l[[1]], digits = 3)))), col=c("black", colors), lty=1, cex=0.6)
+    ix <- seq(1, length(dates), by=60)
+    labs <- format(dates[ix], fmt)
+    axis(side = 1, at = dates[ix], labels = labs,  cex.axis = 0.8)
+  }
+}
+```
+
+```{r}
+# This function returns the set of estimated bspline coefficients for all input states. 
+bspline.coefs <- function(data, states, feature, n.knots=6, degree=3, x=1, y=1) {
+  data = data %>% subset(!is.na(data[, feature]))
+  n = length(states)
+  Bcoef.mat = matrix(0,n,n.knots)
+  
+  for (i in 1:n) {
+    d = data %>% filter(STATE == states[i]) %>% select("DATE", contains(feature))
+    dates = d$DATE
+    d$DATE = as.numeric(d$DATE)
+    
+    l = bspline.model(d, dates, n.knots, degree)
+    Bcoef.mat[i,] = l[[1]]
+  }
+  return (Bcoef.mat)
+}
+```
+
+```{r}
+# This function plots the bspline curves given the target states and parameters and returns knots for each state. 
+plot.bspline <- function(data, states, feature, n.knots=6, degree=3, x=1, y=1) {
+  # top_states = top_pop_states(covid, n)
+  par(mfrow=c(x,y), mar=c(4,4,2,0.5)) # Setup grid, margins
+  data = data %>% subset(!is.na(data[, feature]))
+  n = length(states)
+  colors = rainbow(n)
+  Bcoef.mat = matrix(0,n,n.knots)
+  
+  for (i in 1:n) {
+    plot(c(min(data$DATE), max(data$DATE)), c(min(data[,feature]), 50), xlab = "Time", ylab = feature, main = "COVID cases across states", type = "n", xaxt='n', pch = 20, cex = 0.5)
+    d = data %>% filter(STATE == states[i]) %>% select("DATE", contains(feature))
+    dates = d$DATE
+    d$DATE = as.numeric(d$DATE)
+    points(d$DATE, d[,feature], pch = 20, cex = 0.5)
+    
+    l = bspline.model(d, dates, n.knots, degree)
+    lines(dates, l[[2]], pch = 20, cex = 1, col = colors[i])
+    Bcoef.mat[i,] = l[[1]]
+    legend("topleft", legend=states, col=colors, lty=1, cex=0.6)
+    ix <- seq(1, length(dates), by=60)
+    fmt <- "%b-%Y" # format for axis labels
+    labs <- format(dates[ix], fmt)
+    axis(side = 1, at = dates[ix], labels = labs,  cex.axis = 0.8)
+  }
+}
+```
+
+
+---------Data Access and Spline plots
+```{r}
+# 6
+Northeast = toupper(c("Connecticut", "Massachusetts", "Maine", 
+                      "New Hampshire", "Rhode Island", "Vermont"))
+
+# 8
+Mid.Atlantic = toupper(c("Delaware", "District of Columbia", "Maryland", 
+                         "New Jersey", "New York", "Pennsylvania",
+                         "Virginia", "West Virginia"))
+
+# 9
+Southeast = toupper(c("Alabama", "Arkansas", "Florida",
+                      "Georgia", "Louisiana", "MISSISSIPPI",
+                      "North Carolina", "South Carolina", "Tennessee"))
+
+# 13
+Midwest = toupper(c("Indiana", "Illinois", "Iowa", 
+                    "Kansas", "Kentucky", "Michigan",
+                    "Minnesota", "Missouri", "Nebraska",
+                    "North Dakota", "Ohio", "South Dakota",
+                    "Wisconsin"))
+# 4
+Southwest = toupper(c("Arizona", "New Mexico", "Oklahoma", "Texas"))
+
+# 11
+West = toupper(c("Alaska", "California", "Colorado", "Hawaii",
+                 "Idaho", "Montana", "Nevada", "Oregon",
+                 "Utah", "Washington", "Wyoming"))
+
+region.list <- list(Northeast, Mid.Atlantic, Southeast, Midwest, Southwest, West)
+names(region.list) <- c('Northeast', 'Mid.Atlantic', 'Southeast', 'Midwest', 'Southwest', 'West')
+```
+
+```{r}
+all.states = sort(c(Northeast, Mid.Atlantic, Southeast, Midwest, Southwest, West))
+```
+
+
+```{r}
+covid.com = data.frame(read.csv("../../data/mergedfiles/covid.comG1.csv"))
+covid.com$DATE = as.Date(covid.com$DATE)
+```
+
+```{r}
+B.basis.plot(spline.basis(covid.com, n.knots=15), n.knots=15)
+```
+
+
+```{r}
+plot.basis.com(covid.com, c("TEXAS", "FLORIDA", "MAINE", "GEORGIA"), 'NEWCD_NORM_500', n.knots=15, degree=3, x=1, y=1)
+```
+
+
+```{r}
+plot.bspline(covid.com, c("TEXAS", "FLORIDA", "MAINE", "GEORGIA"), 'NEWCD_NORM_500', n.knots=15, degree=3, x=1, y=1)
+```
+
+---------cluster states and us map demonstration
+
+```{r}
+mid <- function(x) {
+  return ((max(x)+min(x))/2)
+}
+```
+
+```{r}
+state.col = rep("black", 49)
+#state.col[14] = "grey"
+```
+
+```{r}
+Bcoef.mat = bspline.coefs(covid.com, all.states, 'NEWCD_NORM_500', n.knots=15, degree=3)
+
+# Apply kmeans w.r.t how many clusters required
+wss <- function(k) {
+  kmeans(as.data.frame(Bcoef.mat), k, nstart = 10)$tot.withinss
+}
+# Compute and plot wss for k = 1 to k = 15
+k.values <- 1:15
+
+# extract wss for 2-15 clusters
+wss_values <- map_dbl(k.values, wss)
+
+
+# plot(k.values, wss_values, type="b", pch = 19, frame = FALSE, xlab="Number of clusters K", ylab="Total within-clusters sum of squares")
+map.df = map_data("state")
+map.df$STATE = toupper(map.df$region)
+map.df$region = ifelse (map.df$STATE %in% Northeast, "Northeast",
+                  ifelse (map.df$STATE %in% Mid.Atlantic, "Mid.Atlantic",
+                  ifelse (map.df$STATE %in% Southeast, "Southeast",
+                  ifelse (map.df$STATE %in% Midwest, "Midwest",
+                  ifelse (map.df$STATE %in% Southwest, "Southwest",
+                  ifelse (map.df$STATE %in% West, "West", "Other"
+                          ))))))
+state.centers.df = map.df %>% group_by(STATE) %>% summarise(long.mid = mid(long), lat.mid = mid(lat), group=mean(group))
+
+map.state.names = geom_text(data=state.centers.df, aes(x=long.mid, y=lat.mid, group=group, label=STATE),size=1.5, hjust=0, vjust=0, colour = state.col)
+map.state.points = geom_point(data=state.centers.df, aes(x=long.mid, y=lat.mid, group=group), size = 0.5, alpha = 0.6, colour = state.col)
+```
+
+```{r}
+#sort the clusters in the alphabetic order of the states
+sort.state.clusters <- function(clusters, sort.cluster.list) {
+  clen = length(clusters)
+  sort.clusters = 1:clen
+  color.counter = 1
+  for (c in 1:clen) {
+    if (sort.cluster.list[[clusters[c]]] < 0) {
+      sort.cluster.list[[clusters[c]]] = color.counter
+      color.counter = color.counter + 1
+    }
+    sort.clusters[c] = sort.cluster.list[[clusters[c]]]
+  }
+  return (sort.clusters)
+}
+```
+
+
+```{r}
+for (i in 1:20) {
+  # Run K-means to cluster the knots of the states
+  # Bcoef.mat = plot.bspline(covid.com, all.states, 'NEWCD_NORM_500', n.knots=15, degree=3)
+  
+  # choose the number of clusters we want and assign each state its closest cluster
+  set.seed(i)
+  for (k in 7) {
+    cluster.num = k
+    clusters = kmeans(as.data.frame(Bcoef.mat), cluster.num, nstart = 10)$cluster
+    sort.cluster.list = list()
+    for (j in 1:k) {
+      sort.cluster.list[[j]] = -1
+    }
+    
+    sort.clusters = sort.state.clusters(clusters, sort.cluster.list)
+    
+    states.df = data.frame(STATE = all.states, CLUSTER = sort.clusters)
+    write.csv(states.df, paste("../../output/clusterings/cluster", i, ".csv", sep=""))
+    
+    state.cluster = list()
+    for (i in 1:cluster.num) {
+      state.cluster[[i]] = subset(states.df, CLUSTER==i)$STATE
+    }
+    cs = ifelse (map.df$STATE %in% state.cluster[[cluster.num]], cluster.num, cluster.num+1)
+    for (i in (cluster.num-1):1) {
+      cs = ifelse (map.df$STATE %in% state.cluster[[i]], i, cs)
+    }
+    
+    map.df$cluster = cs
+    #map.df$cluster = ifelse (map.df$STATE %in% state.cluster[[1]], 1,
+    #                 ifelse (map.df$STATE %in% state.cluster[[2]], 2,
+    #                 ifelse (map.df$STATE %in% state.cluster[[3]], 3,
+    #                 ifelse (map.df$STATE %in% state.cluster[[4]], 4,
+    #                 ifelse (map.df$STATE %in% state.cluster[[5]], 5,
+    #                 ifelse (map.df$STATE %in% state.cluster[[6]], 6, 7
+    #                        ))))))
+    
+    # us map on bspline knots clusters
+    colors = brewer.pal(n = k, name = "Set2")
+    us.bspline.map = ggplot(map.df, aes(x=long, y=lat, group = group)) + geom_polygon(colour="black", size=0.5)
+    for (i in 1:cluster.num) {
+      us.bspline.map = us.bspline.map + geom_polygon(fill=colors[i], data = filter(map.df, cluster == i))
+    }
+    print(us.bspline.map + map.state.names + map.state.points + ggtitle(paste('U.S. Map spline knots kmeans covid cases k=', k, sep='')))
+  }
+}
+```
+
+
+
+```{r}
+# us map on regions
+region.num = length(region.list)
+region.cols = rainbow(region.num)
+
+us.region.map = ggplot(map.df, aes(x=long, y=lat, group=group)) + 
+                guides(fill=FALSE) + 
+                geom_polygon(colour = "black", size = 0.5)
+for (r in 1:region.num) {
+  us.region.map = us.region.map + geom_polygon(fill=region.cols[r], data = filter(map.df, STATE %in% region.list[[r]]))
+}
+
+us.region.map + ggtitle("U.S. Map regional covid cases") + map.state.names + map.state.points
+```
+

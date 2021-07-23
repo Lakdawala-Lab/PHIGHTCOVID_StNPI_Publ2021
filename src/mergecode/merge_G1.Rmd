@@ -1,0 +1,262 @@
+---
+title: "Undergrad research"
+authors: "Alvin Pan"
+Andrew IDs: "qpan"
+output:
+  pdf_document:
+    toc: no
+  html_document:
+    toc: true
+    toc_float: true
+    theme: spacelab
+---
+
+---------import library packages and datasets
+
+```{r}
+library("readxl")
+library(tidyverse)
+library(np)
+library(GauPro)
+library("GPfit")
+library("lhs")
+```
+
+
+
+```{r}
+covid = data.frame(read_excel("../../data/raw/COVID_CASES_20210413_pop.xlsx"))
+covid.G1 = data.frame(read_excel("../../data/raw/ALL_G1_data_04112021.xlsx"))
+```
+
+
+```{r}
+# covid.G1 = covid.G1 %>% filter(DATE != '' & (!is.na(DATE)))
+``` 
+
+```{r}
+head(covid.G1)
+```
+
+
+
+unify date syntax
+```{r}
+covid$DATE = as.Date(covid$DATE, format="%m/%d/%Y")
+```
+
+
+
+```{r}
+covid.G1$DATE = as.Date(covid.G1$DATE, format="%m/%d/%Y")
+```
+
+
+
+---------Function interfaces
+
+```{r}
+# This function merges two data according to the relevant features(without data cleaning)
+covid.merge <- function(d1, d2, features) {
+  return (d1 %>% full_join(d2, by = features))
+}
+```
+
+```{r}
+#function to union 2 feature vectors
+combine.attributes <- function(x, y) {
+  n = length(x)
+  for (i in 1:n) {
+    if (is.na(x[i])) {
+      x[i] = y[i]
+    }
+  }
+  return (x)
+}
+```
+
+
+```{r}
+#function to union duplicate features, since merging data always outputs duplicated features
+clean.combined.data <- function(data, attrs) {
+  for (name in attrs) {
+    data[, name] = combine.attributes(covid.com[, paste(name, ".x", sep="")], covid.com[, paste(name, ".y", sep="")])
+    data[, paste(name, ".x", sep="")] = NULL
+    data[, paste(name, ".y", sep="")] = NULL
+  }
+  return (dplyr::arrange(data, STATE, DATE))
+}
+```
+
+
+```{r}
+fill.feature.mean.by.category <- function(data, feature, category) {
+  curr.category = data[,category][1]
+  n = dim(data)[1]
+  sub.features = data[,feature][data[,category] == curr.category]
+  feature.mu = mean(sub.features[sub.features>0], na.rm = TRUE)
+  for (i in 1:n) {
+    if (data[,category][i] != curr.category) {
+      curr.category = data[,category][i]
+      sub.features = data[,feature][data[,category] == curr.category]
+      feature.mu = mean(sub.features[sub.features>0], na.rm = TRUE)
+      print(feature.mu)
+    } 
+    if ((is.na(data[,feature][i])) || (data[,feature][i] == 0)) {
+        data[,feature][i] = feature.mu
+    }
+  }
+  return (data)
+}
+```
+
+
+```{r}
+#function to fill the NAs with the most recently observed non-NA for all input features of data frame
+extend.attr <- function(data, state, features) {
+  n = dim(data)[1]
+  for (feature in features) {
+    xs = rep("0", n)
+    prev.state = NULL
+    curr.x = "0"
+    for (i in 1:n) {
+      curr.state = data[, state][i]
+      if ((is.na(data[,feature][i]) || data[,feature][i] == "N")) {
+        if (is.null(prev.state) || (curr.state != prev.state)) {
+          curr.x = "0"
+          prev.state = curr.state
+        }
+      } else {
+        curr.x = data[, feature][i]
+      }
+      xs[i] = curr.x
+    }  
+    data[, feature] = xs
+  }
+  return (data)
+}
+```
+
+
+---------Merge and Save Data Implementations
+
+
+combine 2 data frames, sort data by state and then date
+```{r}
+covid.com = covid.merge(covid, covid.G1, c("STATE", "DATE"))
+covid.com = subset(covid.com, ((!is.na(DATE)) & (!is.na(STATE)) & (!is.na(POPULATION))))
+```
+
+```{r}
+head(covid.com)
+```
+
+```{r}
+length(unique(covid.com$POPULATION))
+```
+
+
+
+```{r}
+covid.com = extend.attr(covid.com,"STATE", c("SCORE"))
+```
+
+```{r}
+duplicate.attributes = c("STUSAB", "LATITUDE", "LONGITUDE", "STATEFP", 
+                         "GNISID")
+```
+
+
+```{r}
+covid.com = clean.combined.data(covid.com, duplicate.attributes)
+```
+
+
+```{r}
+covid.com = fill.feature.mean.by.category(covid.com, "POPULATION", "STATE")
+```
+
+
+Fill the NAs in new confirmed and deaths with 0s
+```{r}
+covid.com$NEWCONFIRMED <- replace(covid.com$NEWCONFIRMED,is.na(covid.com$NEWCONFIRMED), 0)
+covid.com$NEWDEATHS <- replace(covid.com$NEWDEATHS,is.na(covid.com$NEWDEATHS), 0)
+```
+
+
+```{r}
+covid.com$NEWCD_NORM_500 = covid.com$NEWCONFIRMED/covid.com$POPULATION*50000
+covid.com$NEWDEATHS_NORM500 = covid.com$NEWDEATHS/covid.com$POPULATION*50000
+```
+
+
+
+```{r}
+all.states = unique(covid.com$STATE)
+# all.states = sort(all.states)
+all.states = all.states[!is.na(all.states)]
+all.states
+```
+
+
+
+```{r}
+# 6
+Northeast = toupper(c("Connecticut", "Massachusetts", "Maine", 
+                      "New Hampshire", "Rhode Island", "Vermont"))
+
+# 8
+Mid.Atlantic = toupper(c("Delaware", "District of Columbia", "Maryland", 
+                         "New Jersey", "New York", "Pennsylvania",
+                         "Virginia", "West Virginia"))
+
+# 9
+Southeast = toupper(c("Alabama", "Arkansas", "Florida",
+                      "Georgia", "Louisiana", "MISSISSIPPI",
+                      "North Carolina", "South Carolina", "Tennessee"))
+
+# 13
+Midwest = toupper(c("Indiana", "Illinois", "Iowa", 
+                    "Kansas", "Kentucky", "Michigan",
+                    "Minnesota", "Missouri", "Nebraska",
+                    "North Dakota", "Ohio", "South Dakota",
+                    "Wisconsin"))
+# 4
+Southwest = toupper(c("Arizona", "New Mexico", "Oklahoma", "Texas"))
+
+# 11
+West = toupper(c("Alaska", "California", "Colorado", "Hawaii",
+                 "Idaho", "Montana", "Nevada", "Oregon",
+                 "Utah", "Washington", "Wyoming"))
+```
+
+
+
+```{r}
+length(Northeast) + length(Mid.Atlantic) + length(Southeast) + 
+length(Midwest) + length(Southwest) + length(West)
+```
+
+
+categorise states based on regions
+```{r}
+covid.com = covid.com %>%
+        mutate(REGION = case_when(STATE %in% Northeast ~ 1,
+                                  STATE %in% Mid.Atlantic ~ 2,
+                                  STATE %in% Southeast ~ 3,
+                                  STATE %in% Midwest ~ 4,
+                                  STATE %in% Southwest ~ 5,
+                                  STATE %in% West ~ 6,
+                                  TRUE ~ 0))
+```
+
+
+
+```{r}
+head(covid.com)
+```
+
+
+```{r}
+write.csv(covid.com, "../../data/mergedfiles/covid.comG1.csv")
+```

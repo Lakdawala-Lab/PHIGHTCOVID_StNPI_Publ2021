@@ -1,0 +1,11 @@
+#gitignore for data directory
+
+
+#DS_Store
+*.DS_Store
+
+#Rhistory
+*.Rhistory
+
+#Rdata
+*.Rdata
