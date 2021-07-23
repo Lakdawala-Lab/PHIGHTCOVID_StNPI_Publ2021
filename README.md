@@ -31,10 +31,38 @@ Please cite our work as follows:
 
 -B-spline graphs 
 
-#### Data files provided give the following datasets:
+#### Directories
 
-Use covid_K12_data.xlsx, covidUpdated_04162021.csv and USA_States_Data.csv to run the following:
+- data: All data files needed to run the code
+   - data/cleaned: Cleaned data files ready to be used in for all code
+   - data/mergedfiles: covid.comG1.csv data file created from the merge_G1.Rmd file (file will be re-written if merge_G1.Rmd is run)
+   - data/raw: Raw data files used in the merge_G1.Rmd file
+- output: Data that is created when running the .Rmd files
+    - output/clusterings: Contains all 20 cluster simulations created when running BSplineRegressions.Rmd
+- src: All .Rmd files needed to created the figures presented in the paper and on the PHIGHT COVID website
+    - src/Bsplines
+    - src/interactive_cases_time_series
+    - src/interactive_death_time_series
+    - src/lag_graphs
+    - src/mergecode
+    - src/overlapping_time-series
+    - src/static_cases-time_series
+    - src/static-death_time_series
+- SupplementalFiles: Additional supplemental files not included in the paper
+ 
+#### Data file usage:
 
+Use covid_K12_data.xlsx, covidUpdated_04162021.csv and USA_States_Data.csv all found in data/cleaned inside the following code:
+- src/interactive_cases_time_series/state_case_time_series_interactive.Rmd
+- src/interactive_death_time_series/state_death_time_series_interactive.Rmd
+- src/lag_graphs/state_lag_easing_restrictions.Rmd
+- src/overlapping_time-series/overlapping_time_series.Rmd
+- src/static_cases-time_series/state_case_time_series_static.Rmd
+- src/static-death_time_series/state_death_time_series_static.Rmd
 
+Use ALL_G1_data_04112021.xlsx and COVID_CASES_20210413.xlsx found in data/raw inside the following code:
+- src/mergecode/merge_G1.Rmd
 
+Use covid.comG1.csv (the output of src/mergecode/merge_G1.Rmd) found in data/mergedfiles inside the following code:
+- src/Bsplines/BSplineRegressions.Rmd 
 
