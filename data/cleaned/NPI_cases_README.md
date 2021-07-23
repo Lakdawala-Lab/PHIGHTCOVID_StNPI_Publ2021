@@ -25,20 +25,33 @@ Field Information:
 |  Field 	|   Information	|
 |---	|---	|
 |   STATE	|   State name|
+|   STUSAB	|  State name abbreviation 	|
+|  DATE 	|   Date of Cases recorded and/or NPI implementation date	|
 |   LATITUDE	|   In degrees	|
 |  LONGITUDE 	| In degrees  	|
+|   POPULATION	|  US state population 2017 estimates 	|
+|  NEWCONFIRMED 	|   New daily confirmed SARS-CoV-2 cases in the state	|
+|  CUMCONFIRMED 	|   All time cumulative confirmed SARS-CoV-2 cases in the state	|
+|   NEWDEATHS	|   New daily deaths attributed to COVID-19 cases	|
+|  CUMDEATHS 	|   All time cumulative deaths attributed to COVID-19 cases	|
 |   SQMI	| State land area in square miles  	|
-|   STUSAB	|  State name abbreviation 	|
-|  DATE 	|   Date of Cases recorded and/or NPI effective	|
-|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS0 number, used for geographic location identification 	|
-|   EVENT_CATG_S	|  A code given to distinguish between the different NPI actions, see belwo for more information about each 	|
+|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS) number, used for geographic location identification 	|
+|   GNISID	|   Geographic Names Identification System ID	|
+|   UID	|   Unique identifier	|
+|  CODE3 	|  Code 3 (From JHU) 	|
+|   EVENT_CATG_S	|  A code given to distinguish between the different NPI actions, see below for more information about each 	|
 |  SCORE 	|  State NPI score given based on scoring rubric 	|
 |  SHORT_DESCRIPT 	|   A short description of the NPI	|
-|   GNISID	|   Geographic Names Identification System ID	|
 |   RESTRICTIONS	|  restrictions currently being implemented? 1= yes, 0=no 	|
 |   PHASED_REOPENING	|  Phased reopening currently being implmented? 1=yes, 0= no 	|
 | COUNTYOPEN  	|   Opening at the county level? 1=yes, 0=no	|
 |   FACECOVER_RQD	|  Masks/face coverings required? 1=yes, 0=no 	|
+|  New Cases/500,000 ppl 	|   New daily confirmed SARS-CoV-2 cases normalized to state population and represented per 500,000 people 	|
+|  New Deaths/500,000 ppl	|  New daily deaths attributed to COVID-19 cases normalized to state population and represented per 500,000 people	|
+|  New Deaths/100,000 ppl	|  New daily deaths attributed to COVID-19 cases normalized to state population and represented per 100,000 people 	|
+|  CumDeaths/500,000 ppl	|  All time cumulative deaths attributed to COVID-19 cases normalized to state population and represented per 500,000 people 	|
+|  CumDeaths/100,000 ppl	|   All time cumulative deaths attributed to COVID-19 cases normalized to state population and represented per 100,000 people	|
+
 
 NPI Category Codes:
 
