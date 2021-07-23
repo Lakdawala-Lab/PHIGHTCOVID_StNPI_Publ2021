@@ -20,8 +20,8 @@ Field Information:
 |   SQMI	| State land area in square miles  	|
 |   STUSAB	|  State name abbreviation 	|
 |  DATE 	|   Date of Cases recorded and/or NPI effective	|
-|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS0 number, used for geographic location identification 	|
-|   EVENT_CATG_S	|  A code given to distinguish between the different NPI actions, see belwo for more information about each 	|
+|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS) number, used for geographic location identification 	|
+|   EVENT_CATG_S	|  A code given to distinguish between the different NPI actions, see below for more information about each 	|
 |  SCORE 	|  State NPI score given based on scoring rubric 	|
 |  SHORT_DESCRIPT 	|   A short description of the NPI	|
 |   GNISID	|   Geographic Names Identification System ID	|
