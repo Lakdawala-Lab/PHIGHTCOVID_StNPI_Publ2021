@@ -35,7 +35,7 @@ Field Information:
 |   NEWDEATHS	|   New daily deaths attributed to COVID-19 cases	|
 |  CUMDEATHS 	|   All time cumulative deaths attributed to COVID-19 cases	|
 |   SQMI	| State land area in square miles  	|
-|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS) number, used for geographic location identification 	|
+|  STATEFP 	|  State Federal Information Processing System (FIPS) number, used for geographic location identification 	|
 |   GNISID	|   Geographic Names Identification System ID	|
 |   UID	|   Unique identifier	|
 |  CODE3 	|  Code 3 (From JHU) 	|
@@ -43,7 +43,7 @@ Field Information:
 |  SCORE 	|  State NPI score given based on scoring rubric 	|
 |  SHORT_DESCRIPT 	|   A short description of the NPI	|
 |   RESTRICTIONS	|  restrictions currently being implemented? 1= yes, 0=no 	|
-|   PHASED_REOPENING	|  Phased reopening currently being implmented? 1=yes, 0= no 	|
+|   PHASED_REOPENING	|  Phased reopening currently being implemented? 1=yes, 0= no 	|
 | COUNTYOPEN  	|   Opening at the county level? 1=yes, 0=no	|
 |   FACECOVER_RQD	|  Masks/face coverings required? 1=yes, 0=no 	|
 |  New Cases/500,000 ppl 	|   New daily confirmed SARS-CoV-2 cases normalized to state population and represented per 500,000 people 	|
