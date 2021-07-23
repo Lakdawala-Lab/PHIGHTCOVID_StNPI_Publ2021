@@ -11,3 +11,50 @@ NPI data acquired from March 2020 - March 31, 2021
 ALL_G1_data_04112021.xlsx was created by collecting NPI data from state government and governor websites. Data was then sorted, categorized, given a description and scored. 
 
 Field Information: 
+
+|  Field 	|   Information	|
+|---	|---	|
+|   STATE	|   State name|
+|   LATITUDE	|   In degrees	|
+|  LONGITUDE 	| In degrees  	|
+|   SQMI	| State land area in square miles  	|
+|   STUSAB	|  State name abbreviation 	|
+|  DATE 	|   Date of Cases recorded and/or NPI effective	|
+|  STATEFP 	|  State Federal Information Processing Sysytem (FIPS0 number, used for geographic location identification 	|
+|   EVENT_CATG_S	|  A code given to distinguish between the different NPI actions, see belwo for more information about each 	|
+|  SCORE 	|  State NPI score given based on scoring rubric 	|
+|  SHORT_DESCRIPT 	|   A short description of the NPI	|
+|   GNISID	|   Geographic Names Identification System ID	|
+|   RESTRICTIONS	|  restrictions currently being implemented? 1= yes, 0=no 	|
+|   PHASED_REOPENING	|  Phased reopening currently being implmented? 1=yes, 0= no 	|
+| COUNTYOPEN  	|   Opening at the county level? 1=yes, 0=no	|
+|   FACECOVER_RQD	|  Masks/face coverings required? 1=yes, 0=no 	|
+
+NPI Category Codes:
+
+|  EVENT_CATG_S Codes 	| Information  	|
+|---	|---	|
+|   1SM	|   Mandatory stay at home order for whole state|
+|   1SR	|   Recommended stay at home order for whole state	|
+|   1L	|   Stay at home order lifted	|
+|  2SM 	|  Mandatory non-essential business closures for whole state 	|
+|   2SR	|  Recommended non-essential business closures for whole state 	|
+|   2E	|   Eased restrictions and some partial reopenings on non-essential business closures	|
+|   2R	|   Re-issued non-essential business closures	|
+|   2L	|   Non-essential businesses closures lifted	|
+|   3SM	|  Mandatory indoor gathering ban issued 	|
+|   3SR	|   Indoor gathering ban recommendation issued	|
+|   3E	|   Eased size limitations on indoor gathering bans	|
+|   3R	|  Indoor gathering ban limitations re-issued 	|
+|  3L 	|   Indoor gathering ban limitations lifted	|
+| 4SM  	|   Restaurant and Bar Limitations/Restrictions issued	|
+|   4E	|   Eased restaurant and bar limitations/restrictions	|
+|   4R	|   Restaurant and Bar Limitations/Restrictions Re-issued	|
+|   4L	|   Restaurant and Bar Limitations/Restrictions lifted	|
+|   15R	|   State guidance recommending face coverings/masks	|
+|   15M	|   State issued order making face coverings/masks mandatory for all citizens out in public areas (exceptions differ by state)	|
+|   15M1	|   State issued order making face coverings/masks mandatory for employees in certain businesses	|
+|   15M2	|   State issued order making face coverings/masks mandatory for employees and patrons in certain businesses	|
+|   15M3	|   State issued order making face coverings/masks mandatory for employees and patrons in state government facilities only	|
+|  15COM 	|   Individual counties have mandated masks in public spaces	|
+|   15CYM	|  Individual cities have mandated masks in public spaces 	|
