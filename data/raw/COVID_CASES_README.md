@@ -14,6 +14,23 @@ Data from COVID-19 Dashboard by the Center for Systems Science and Engineering (
 
 Data acquired on github from COVID-19 Data Repository by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University https://github.com/CSSEGISandData/COVID-19
 
-The Lakdawala Lab at the University of Pittsburgh restructured the JHU CSSE COVID-19 Data acquired from github and produced the number of new daily cases and deaths as well as the cumulative cases and deaths in a format which fit our project needs. 
+The Lakdawala Lab at the University of Pittsburgh restructured the JHU CSSE COVID-19 Data acquired from github and produced the number of new daily cases and deaths as well as the cumulative cases and deaths in a format which fit our project needs. We also added geographical coordinates as well as 2017 U.S. population estimates from the U.S. Census Bureau. 
 
 Field information: 
+
+|  Field 	|   Information	|
+|---	|---	|
+|  STATE 	|   State name	|
+|   STUSAB	|   State name abbreviation	|
+|  DATE 	|   Date	|
+|   LATITUDE	|   In degrees	|
+|   LONGITUDE	|   In degrees	|
+|   POPULATION	|  US state population 2017 estimates 	|
+|  NEWCONFIRMED 	|   New daily confirmed SARS-CoV-2 cases in the state	|
+|  CUMCONFIRMED 	|   All time cumulative confirmed SARS-CoV-2 cases in the state	|
+|   NEWDEATHS	|   New daily deaths attributed to COVID-19 cases	|
+|  CUMDEATHS 	|   All time cumulative deaths attributed to COVID-19 cases	|
+|   STATEFP	|  State FIPS code 	|
+|   GNISID	|   Geographic identifier	|
+|   UID	|   Unique identifier	|
+|  CODE3 	|  Code 3 (From JHU) 	|
