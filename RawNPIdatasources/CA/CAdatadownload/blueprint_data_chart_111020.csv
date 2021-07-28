@@ -1,0 +1,61 @@
+County,Date of Tier Assessment,Ending Date of Week of Data: 10-25-20 to 10-31-20,"Updated Tier Assignment, 11-09-20 Assessment","Previous Tier Assignment, 11-02-20 Assessment",First Date in Current Tier,County Tier Assignment Based on Meeting Accelerated Health Equity Criteria,School Reopening Status as of 11-09-20,Number of Weeks in Current Tier,Number of Consecutive Weeks Meeting Criteria for Less Restrictive Tier,Number of Consecutive Weeks Meeting Criteria for More Restrictive Tier,"Tier for Week 10-25-20 to 10-31-20, 11-09-20 Assessment","Test Positivity excl prisons (7-day, 7-day lag)","Case Rate Used for Tier Adjusted Using Linear Adjustment (7-day avg, 7-day lag)","Unadjusted Case Rate per 100,000 excl prisons (7-day avg, 7-day lag)",Linear Adjustment Factor Applied to Case Rate (>State Avg + Pop>100K or <State Avg + TestPos>3.5 + Pop>100K),"Tests per 100,000 excl prisons, with replaced approved county data (7-day avg, 7-day lag)
+
+State Median Testing Rate=272.41",Population^^,County Exceeds Minimum Number of Weekly Cases Based on Population and Current Tier,"Health Equity Quartile Test Positivity Excl Prison Cases (7 day, 7 day lag)",HE Quartile (Test Positivity%) Within Threshold for Less Restrictive Tier,Number of Consecutive Weeks of Health Equity Metric Towards Movement to Less Restrictive Tier,Eligible for Accelerated Health Equity Criteria to Move to Less Restrictive Tier,Number of Consecutive Weeks Towards Movement to Less Restrictive Tier with Accelerated Healthy Equity Criteria
+Alameda,11-09-2020,10-31-2020,3,3,10-12-2020,No,May Reopen,4,0,0,3,1.6,3.8,4.9,0.774,395.4,1685886,NA,2.8,No,0,No,0
+Alpine^^,11-09-2020,10-31-2020,4,4,08-31-2020,NA,May Reopen,10,NA,0,1,1.8,25.6,25.6,   ,716.2,1117,No,   ,NA,NA,NA,NA
+Amador^^,11-09-2020,10-31-2020,2,3,11-09-2020,NA,may reopen,0,0,0,1,2.5,8.9,8.9,   ,389.3,38531,Yes,   ,NA,NA,NA,NA
+Butte^,11-09-2020,10-31-2020,3,3,10-19-2020,No,May Reopen,3,0,1,2,2.5,5.0,5.2,0.957,295.9,217769,NA,3.7,No,0,No,0
+Calaveras,11-09-2020,10-31-2020,4,4,10-26-2020,NA,May Reopen,2,NA,0,3,1.6,3.9,3.9,   ,236.8,44289,No,   ,NA,NA,NA,NA
+Colusa^,11-09-2020,10-31-2020,3,3,10-26-2020,NA,May Reopen,1,0,1,1,4.8,13.9,13.9,   ,250.4,22593,Yes,   ,NA,NA,NA,NA
+Contra Costa,11-09-2020,10-31-2020,2,3,11-09-2020,No,May reopen,0,0,0,2,2.3,5.3,6.1,0.876,339.8,1160099,NA,4.1,No,0,No,0
+Del Norte^^,11-09-2020,10-31-2020,3,3,08-31-2020,NA,May Reopen,10,0,0,2,1.2,4.1,4.1,   ,527.2,27558,No,   ,NA,NA,NA,NA
+El Dorado*,11-09-2020,10-31-2020,2,3,11-09-2020,No,May Reopen,0,0,0,2,2.2,5.8,5.8,   ,247.2,193098,NA,1.1,Yes,0,No,0
+Fresno^,11-09-2020,10-31-2020,2,2,09-28-2020,No,May Reopen,6,0,1,1,5.5,8.3,7.9,1.052,236.7,1032227,NA,8.3,No,0,No,0
+Glenn^^,11-09-2020,10-31-2020,2,2,10-26-2020,NA,May Reopen,2,0,0,1,6.5,10.2,10.2,   ,202.0,29348,No,   ,NA,NA,NA,NA
+Humboldt,11-09-2020,10-31-2020,4,4,10-05-2020,Yes,May Reopen,5,NA,0,3,1.0,2.0,2.0,   ,244.5,134098,NA,0.7,NA,NA,NA,NA
+Imperial,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,12.1,20.3,18.9,1.071,224.1,191649,NA,12.4,No,0,No,0
+Inyo,11-09-2020,10-31-2020,3,3,10-05-2020,NA,May Reopen,5,0,0,3,2.5,3.9,3.9,   ,247.0,18453,No,   ,NA,NA,NA,NA
+Kern^,11-09-2020,10-31-2020,2,2,10-12-2020,No,May Reopen,4,0,1,1,5.2,8.9,8.0,1.110,197.7,927251,NA,6.8,No,0,No,0
+Kings^,11-09-2020,10-31-2020,2,2,10-12-2020,No,May Reopen,4,0,1,1,3.2,8.4,10.2,0.822,369.4,156444,NA,4.0,Yes,2,No,0
+Lake,11-09-2020,10-31-2020,2,2,08-31-2020,NA,May Reopen,10,0,0,2,3.6,6.2,6.2,   ,232.1,64871,No,   ,NA,NA,NA,NA
+Lassen^,11-09-2020,10-31-2020,3,3,09-21-2020,NA,May Reopen,7,0,1,1,1.3,7.6,7.6,   ,826.3,30065,Yes,   ,NA,NA,NA,NA
+Los Angeles*,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,3.8,7.6,11.5,0.663,455.9,10257557,NA,6.5,Yes,7,No,0
+Madera*,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,5.8,10.5,9.5,1.101,203.7,160089,NA,9.8,No,0,No,0
+Marin,11-09-2020,10-31-2020,3,3,10-26-2020,No,May Reopen,2,0,0,3,1.1,2.5,3.6,0.692,440.3,260800,NA,1.3,Yes,2,No,0
+Mariposa^^,11-09-2020,10-31-2020,4,4,09-21-2020,NA,May Reopen,7,NA,0,3,0.3,1.6,1.6,   ,286.6,17795,No,   ,NA,NA,NA,NA
+Mendocino,11-09-2020,10-31-2020,2,2,10-26-2020,NA,May Reopen,2,0,0,2,2.5,4.5,4.5,   ,258.5,88439,No,   ,NA,NA,NA,NA
+Merced^,11-09-2020,10-31-2020,2,2,10-05-2020,No,May Reopen,5,0,1,1,4.8,12.8,12.2,1.044,242.5,287420,NA,6.3,No,0,No,0
+Modoc,11-09-2020,10-31-2020,3,4,10-26-2020,NA,May Reopen,0,0,0,1,4.5,19.6,19.6,   ,235.2,9475,Yes,   ,NA,NA,NA,NA
+Mono*^,11-09-2020,10-31-2020,3,3,10-26-2020,NA,May Reopen,10,0,0,1,13.8,61.4,61.4,   ,732.7,13961,Yes,   ,NA,NA,NA,NA
+Monterey,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,4.4,10.0,10.5,0.947,301.1,448732,NA,7.6,Yes,7,No,0
+Napa^,11-09-2020,10-31-2020,3,3,10-19-2020,No,May Reopen,3,0,1,1,3.3,7.7,11.6,0.664,455.4,139652,NA,5.8,No,0,No,0
+Nevada^,11-09-2020,10-31-2020,3,3,09-21-2020,NA,May Reopen,7,0,1,2,2.0,6.1,6.1,   ,272.4,98710,Yes,   ,NA,NA,NA,NA
+Orange,11-09-2020,10-31-2020,2,2,09-07-2020,No,May Reopen,9,0,0,2,3.3,5.6,5.6,   ,248.1,3228519,NA,5.5,No,0,No,0
+Placer^,11-09-2020,10-31-2020,2,2,10-26-2020,No,May Reopen,1,0,1,1,4.2,8.5,8.4,1.006,268.6,400434,NA,3.7,No,0,No,0
+Plumas**,11-09-2020,10-31-2020,3,3,10-26-2020,NA,May Reopen,1,0,0,2,3.1,6.8,6.8,   ,338.4,18997,No,   ,NA,NA,NA,NA
+Riverside,11-09-2020,10-31-2020,1,1,10-19-2020,No,May Not Reopen,3,0,NA,1,6.7,13.9,13.1,1.064,228.8,2468145,NA,8.5,No,0,No,0
+Sacramento^^^,11-09-2020,10-31-2020,1,2,11-09-2020,No,May Not Reopen,0,0,NA,1,4.1,9.7,9.7,1.002,271.0,1567975,NA,5.7,No,0,No,0
+San Benito,11-09-2020,10-31-2020,2,2,10-12-2020,NA,May Reopen,4,0,0,2,3.1,6.2,6.2,   ,272.5,64022,No,   ,NA,NA,NA,NA
+San Bernardino,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,7.7,16.8,17.2,0.977,285.1,2217398,NA,9.3,No,0,No,0
+San Diego^^^,11-09-2020,10-31-2020,1,2,11-09-2020,No,May Not Reopen,0,0,NA,1,2.6,8.9,10.0,0.885,334.9,3370418,NA,6.5,No,0,No,0
+San Francisco^,11-09-2020,10-31-2020,4,4,10-19-2020,Yes,May Reopen,3,NA,1,3,1.1,2.5,5.0,0.500,654.4,892280,NA,1.5,NA,NA,NA,NA
+San Joaquin^,11-09-2020,10-31-2020,2,2,09-28-2020,No,May Reopen,6,0,1,1,4.3,8.3,7.7,1.078,219.3,782545,NA,5.5,No,0,No,0
+San Luis Obispo*^,11-09-2020,10-31-2020,2,2,09-21-2020,No,May Reopen,7,0,1,1,3.0,7.2,10.2,0.710,430.5,278862,NA,4.8,Yes,7,No,0
+San Mateo,11-09-2020,10-31-2020,3,3,10-26-2020,No,May Reopen,2,0,0,3,1.3,2.2,4.1,0.544,520.9,778001,NA,2.5,No,0,No,0
+Santa Barbara,11-09-2020,10-31-2020,2,2,09-28-2020,No,May Reopen,6,0,0,2,1.8,4.3,4.6,0.928,311.5,456373,NA,2.8,Yes,5,No,0
+Santa Clara^,11-09-2020,10-31-2020,3,3,10-12-2020,No,May Reopen,4,0,1,2,1.6,4.1,6.5,0.639,468.9,1967585,NA,3.7,No,0,No,0
+Santa Cruz,11-09-2020,10-31-2020,2,3,11-09-2020,No,may reopen,0,0,0,2,2.0,5.9,6.9,0.856,351.0,273999,NA,4.7,No,0,No,0
+Shasta,11-09-2020,10-31-2020,1,1,10-26-2020,No,May Not Reopen,1,0,NA,1,6.1,20.2,24.9,0.814,374.0,177925,NA,5.6,Yes,1,No,0
+Sierra,11-09-2020,10-31-2020,4,4,10-12-2020,NA,May Reopen,4,NA,0,4,0.0,0.0,0.0,   ,243.1,3115,No,   ,NA,NA,NA,NA
+Siskiyou,11-09-2020,10-31-2020,3,4,10-26-2020,NA,May Reopen,0,0,0,1,8.0,13.0,13.0,   ,218.1,43956,Yes,   ,NA,NA,NA,NA
+Solano^,11-09-2020,10-31-2020,2,2,09-21-2020,No,May Reopen,7,0,1,1,3.8,11.3,12.5,0.903,325.4,444255,NA,4.2,Yes,7,No,0
+Sonoma*,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,5.3,11.5,11.6,0.989,278.2,496668,NA,7.0,Yes,2,No,0
+Stanislaus*^^^,11-09-2020,10-31-2020,1,2,11-09-2020,No,May Not Reopen,0,0,NA,1,4.4,9.0,8.2,1.104,201.3,562303,NA,4.3,Yes,0,No,0
+Sutter^,11-09-2020,10-31-2020,2,2,10-12-2020,NA,May Reopen,4,0,1,1,5.3,8.8,8.8,   ,199.8,105747,Yes,   ,NA,NA,NA,NA
+Tehama,11-09-2020,10-31-2020,1,1,10-05-2020,NA,May Not Reopen,5,0,NA,1,6.5,15.4,15.4,   ,240.0,65885,NA,   ,NA,NA,NA,NA
+Trinity^,11-09-2020,10-31-2020,3,4,10-26-2020,NA,May Reopen,1,0,1,1,6.3,9.6,9.6,   ,154.0,13354,Yes,   ,NA,NA,NA,NA
+Tulare,11-09-2020,10-31-2020,1,1,08-31-2020,No,May Not Reopen,10,0,NA,1,5.2,10.0,9.7,1.024,255.9,484423,NA,5.6,Yes,7,No,0
+Tuolumne^,11-09-2020,10-31-2020,3,3,08-31-2020,NA,May Reopen,10,0,1,2,2.8,6.8,6.8,   ,328.0,52351,Yes,   ,NA,NA,NA,NA
+Ventura^,11-09-2020,10-31-2020,2,2,10-05-2020,No,May Reopen,5,0,1,1,3.0,7.2,7.7,0.947,301.3,852747,NA,4.8,Yes,5,No,0
+Yolo,11-09-2020,10-31-2020,2,2,09-28-2020,No,May Reopen,6,0,0,2,3.2,6.7,6.7,   ,242.3,223612,NA,4.7,Yes,7,No,0
+Yuba^,11-09-2020,10-31-2020,2,2,10-05-2020,NA,May Reopen,5,0,1,1,5.4,11.2,11.2,   ,214.8,79290,Yes,   ,NA,NA,NA,NA

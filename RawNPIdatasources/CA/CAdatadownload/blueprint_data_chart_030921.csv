@@ -1,0 +1,61 @@
+County,Date of Tier Assessment,Ending Date of Week of Data: 02-21-21 to 02-27-21,Final Tier Assignment for 03-09-21,"Previous Tier Assignment, 03-01-21 Assessment",First Date in Current Tier,County Tier Assignment Based on Meeting Accelerated Health Equity Criteria,Number of Weeks in Current Tier,Number of Consecutive Weeks Meeting Criteria for Less Restrictive Tier,Number of Consecutive Weeks Meeting Criteria for More Restrictive Tier,"Tier for Week 02-21-21 to 02-27-21, 03-08-21 Assessment","Test Positivity excl prisons (7-day, 7-day lag)","Case Rate Used for Tier Adjusted Using Linear Adjustment (7-day avg, 7-day lag)","Unadjusted Case Rate per 100,000 excl prisons (7-day avg, 7-day lag)",Linear Adjustment Factor Applied to Case Rate,"Tests per 100,000 excl prisons, with replaced approved county data (7-day avg, 7-day lag)
+
+State Median Testing Rate=341.74",Population^,County Exceeds Minimum Number of Weekly Cases Based on Population and Current Tier,"Health Equity Quartile Test Positivity Excl Prison Cases (7 day, 7 day lag)",HE Quartile (Test Positivity%) Within Threshold for Less Restrictive Tier (Non-Accelerated),Number of Consecutive Weeks of Health Equity Metric Towards Movement to Less Restrictive Tier (Non-Accelerated),Eligible for Accelerated Health Equity Criteria to Move to Less Restrictive Tier (If No Progression Via Non-Accelerated Criteria),Number of Consecutive Weeks Towards Movement to Less Restrictive Tier with Accelerated Healthy Equity Criteria
+Alameda,03-08-2021,02-27-2021,2,1,03-08-2021,No,0,0,0,2,1.8,4.8,7.1,0.674,564.7,1685886,NA,2.6,Yes,0,No,0
+Alpine,03-08-2021,02-27-2021,4,3,03-08-2021,NA,0,NA,0,4,0.0,0.0,0.0,   ,358.1,1117,No,   ,NA,NA,NA,NA
+Amador,03-08-2021,02-27-2021,1,1,12-07-2020,NA,13,0,NA,1,2.5,10.4,10.4,   ,446.8,38531,NA,   ,NA,NA,NA,NA
+Butte,03-08-2021,02-27-2021,2,1,03-08-2021,Yes,0,0,0,1,3.6,7.3,6.6,1.099,256.8,217769,NA,4.6,Yes,0,Yes,0
+Calaveras,03-08-2021,02-27-2021,2,1,03-08-2021,NA,0,0,0,2,2.4,4.8,4.8,   ,237.7,44289,NA,   ,NA,NA,NA,NA
+Colusa,03-08-2021,02-27-2021,1,1,11-24-2020,NA,15,1,0,2,2.9,5.7,5.7,   ,219.4,22593,NA,   ,NA,NA,NA,NA
+Contra Costa,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,1,NA,1,2.9,7.9,9.2,0.859,438.2,1160099,NA,4.9,Yes,4,Yes,1
+Del Norte*,03-08-2021,02-27-2021,2,2,02-08-2021,NA,4,0,0,1,2.9,11.9,11.9,   ,585.8,27558,No,   ,NA,NA,NA,NA
+El Dorado,03-08-2021,02-27-2021,2,2,03-01-2021,Yes,1,0,0,1,3.6,7.1,6.5,1.095,260.9,193098,NA,5.8,No,0,No,0
+Fresno,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,5.3,12.6,12.6,1.000,341.6,1032227,NA,6.8,Yes,2,No,0
+Glenn,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,0,NA,1,5.8,11.2,11.2,   ,209.3,29348,NA,   ,NA,NA,NA,NA
+Humboldt,03-08-2021,02-27-2021,2,2,02-22-2021,No,2,0,0,2,2.3,6.4,6.6,0.973,360.0,134098,NA,2.3,Yes,2,No,0
+Imperial,03-08-2021,02-27-2021,2,1,03-08-2021,No,0,0,0,2,3.2,6.8,6.8,   ,291.1,191649,NA,4.1,Yes,0,No,0
+Inyo,03-08-2021,02-27-2021,1,1,12-14-2020,NA,12,0,NA,1,7.1,29.4,29.4,   ,413.4,18453,NA,   ,NA,NA,NA,NA
+Kern,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,4.9,11.8,11.1,1.059,291.2,927251,NA,7.6,Yes,1,No,0
+Kings,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,1,NA,1,4.4,11.9,14.4,0.825,461.1,156444,NA,3.3,Yes,3,Yes,1
+Lake,03-08-2021,02-27-2021,1,1,11-28-2020,NA,14,0,NA,1,6.3,9.2,9.2,   ,285.0,64871,NA,   ,NA,NA,NA,NA
+Lassen,03-08-2021,02-27-2021,2,2,03-01-2021,NA,1,1,0,3,1.2,3.8,3.8,   ,655.7,30065,No,   ,NA,NA,NA,NA
+Los Angeles,03-08-2021,02-27-2021,1,1,08-31-2020,No,28,1,0,2,2.5,5.2,6.9,0.750,512.9,10257557,NA,3.6,Yes,3,No,0
+Madera,03-08-2021,02-27-2021,1,1,08-31-2020,No,28,0,NA,1,4.1,11.4,12.2,0.930,389.4,160089,NA,7.3,Yes,1,No,0
+Marin,03-08-2021,02-27-2021,2,2,02-22-2021,Yes,2,0,0,2,1.5,4.2,7.7,0.551,648.9,260800,NA,2.9,Yes,2,No,0
+Mariposa,03-08-2021,02-27-2021,3,2,03-08-2021,NA,0,0,0,4,0.7,0.8,0.8,   ,325.9,17795,No,   ,NA,NA,NA,NA
+Mendocino,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,1,0,3,1.9,3.9,3.9,   ,265.2,88439,NA,   ,NA,NA,NA,NA
+Merced,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,5.4,14.8,17.8,0.829,458.8,287420,NA,5.4,Yes,4,No,0
+Modoc*,03-08-2021,02-27-2021,2,2,03-01-2021,NA,1,0,0,1,1.6,9.0,9.0,   ,281.9,9475,No,   ,NA,NA,NA,NA
+Mono,03-08-2021,02-27-2021,1,1,11-30-2020,NA,14,0,NA,1,2.0,7.2,7.2,   ,206.7,13961,NA,   ,NA,NA,NA,NA
+Monterey,03-08-2021,02-27-2021,1,1,08-31-2020,No,28,0,NA,1,3.1,7.2,7.2,   ,313.5,448732,NA,5.1,Yes,1,No,0
+Napa,03-08-2021,02-27-2021,2,2,03-01-2021,No,1,0,0,2,2.1,6.4,10.0,0.642,586.7,139652,NA,4.1,Yes,1,No,0
+Nevada,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,0,NA,1,3.9,10.1,10.1,   ,289.9,98710,NA,   ,NA,NA,NA,NA
+Orange,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,1,0,2,3.2,6.0,6.0,   ,323.9,3228519,NA,4.1,Yes,3,No,0
+Placer,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,3.4,7.7,7.7,   ,276.2,400434,NA,4.0,Yes,6,No,0
+Plumas,03-08-2021,02-27-2021,3,2,03-08-2021,NA,0,0,0,4,0.6,0.8,0.8,   ,403.1,18997,No,   ,NA,NA,NA,NA
+Riverside,03-08-2021,02-27-2021,1,1,10-19-2020,No,21,1,NA,1,4.1,8.3,7.8,1.053,296.3,2468145,NA,4.2,Yes,2,Yes,1
+Sacramento,03-08-2021,02-27-2021,1,1,11-09-2020,No,18,0,NA,1,3.8,9.5,9.5,1.007,335.8,1567975,NA,5.8,Yes,2,No,0
+San Benito,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,1,0,2,4.0,6.9,6.9,   ,365.1,64022,NA,   ,NA,NA,NA,NA
+San Bernardino,03-08-2021,02-27-2021,1,1,08-31-2020,No,28,1,0,2,3.2,6.7,6.7,   ,334.9,2217398,NA,4.0,Yes,3,No,0
+San Diego,03-08-2021,02-27-2021,1,1,11-09-2020,No,18,1,NA,1,3.3,8.8,8.9,0.995,344.9,3370418,NA,4.5,Yes,3,Yes,1
+San Francisco,03-08-2021,02-27-2021,2,2,03-01-2021,No,1,1,0,3,1.1,2.8,5.6,0.500,716.8,892280,NA,2.2,Yes,1,No,0
+San Joaquin,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,1,NA,1,4.4,11.2,10.5,1.066,285.5,782545,NA,4.2,Yes,2,Yes,1
+San Luis Obispo,03-08-2021,02-27-2021,2,2,03-01-2021,No,1,0,0,2,1.9,5.7,8.5,0.675,563.6,278862,NA,2.1,Yes,1,No,0
+San Mateo,03-08-2021,02-27-2021,2,2,02-22-2021,No,2,1,0,3,1.2,3.0,6.0,0.500,844.1,778001,NA,2.3,Yes,2,No,0
+Santa Barbara,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,3.6,9.7,10.9,0.885,420.6,456373,NA,5.1,Yes,1,No,0
+Santa Clara,03-08-2021,02-27-2021,2,2,03-01-2021,No,1,0,0,2,1.7,4.2,8.4,0.500,710.7,1967585,NA,3.8,Yes,1,No,0
+Santa Cruz,03-08-2021,02-27-2021,2,1,03-08-2021,No,0,0,0,2,1.9,5.3,6.7,0.794,482.4,273999,NA,3.7,Yes,0,No,0
+Shasta,03-08-2021,02-27-2021,2,2,02-22-2021,Yes,2,0,0,2,2.5,5.9,5.9,1.000,341.9,177925,NA,2.2,Yes,2,No,0
+Sierra,03-08-2021,02-27-2021,3,3,11-16-2020,NA,16,1,0,4,0.0,0.0,0.0,   ,224.7,3115,No,   ,NA,NA,NA,NA
+Siskiyou,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,0,NA,1,7.3,9.4,9.4,   ,199.6,43956,NA,   ,NA,NA,NA,NA
+Solano,03-08-2021,02-27-2021,2,1,03-08-2021,No,0,0,0,2,2.4,6.7,7.0,0.961,368.4,444255,NA,3.6,Yes,0,No,0
+Sonoma,03-08-2021,02-27-2021,1,1,08-31-2020,No,28,0,NA,1,3.1,8.2,9.0,0.911,402.6,496668,NA,5.3,Yes,4,No,0
+Stanislaus,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,5.3,13.6,13.4,1.019,325.3,562303,NA,6.0,Yes,2,No,0
+Sutter,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,0,NA,1,4.2,9.9,9.9,   ,240.3,105747,NA,   ,NA,NA,NA,NA
+Tehama,03-08-2021,02-27-2021,1,1,10-05-2020,NA,23,0,NA,1,4.1,7.8,7.8,   ,221.4,65885,NA,   ,NA,NA,NA,NA
+Trinity,03-08-2021,02-27-2021,2,2,02-22-2021,NA,2,0,0,2,4.8,4.3,4.3,   ,176.5,13354,No,   ,NA,NA,NA,NA
+Tulare,03-08-2021,02-27-2021,1,1,08-31-2020,No,28,0,NA,1,4.4,9.5,9.4,1.014,329.6,484423,NA,5.9,Yes,2,No,0
+Tuolumne,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,0,NA,1,3.4,7.9,7.9,   ,390.0,52351,NA,   ,NA,NA,NA,NA
+Ventura,03-08-2021,02-27-2021,1,1,11-16-2020,No,16,0,NA,1,3.5,9.1,12.9,0.708,541.3,852747,NA,6.8,Yes,2,No,0
+Yolo,03-08-2021,02-27-2021,2,2,02-22-2021,No,2,0,0,2,1.1,4.0,7.9,0.500,792.6,223612,NA,4.3,Yes,2,No,0
+Yuba,03-08-2021,02-27-2021,1,1,11-16-2020,NA,16,0,NA,1,4.9,8.5,8.5,   ,232.4,79290,NA,   ,NA,NA,NA,NA

@@ -1,0 +1,61 @@
+County,Tier Assignment on 11/16,Final Tier for 11/24,Test Positivity Tier,"Test Positivity excl prisons (7-day, 4-day lag)",Case Rate or Case Number Tier,"Case Rate Used for Large Counties Tier (7-day avg, 4-day lag)","Total New Cases Used for Small Counties Tier (7-day total, 4-day lag)","Unadjusted Case Rate per 100,000 excl prisoners (7-day avg, 4-day lag)",Linear Adjustment Factor Applied to Case Rate (>State Avg + Pop>100K or <State Avg + TestPos>3.5 + Pop>100K),"Tests per 100,000 excl prisons, with replaced approved county data (7-day avg, 7-day lag)
+
+State Median Testing Rate=272.41",Population,Schools Reopening Status*
+Alameda,1,1,3,2.8,1,7.1,1351,11.4,0.624,477.2,1685886,may not reopen
+Alpine^,4,3,1,11.9,3,115.1,9,115.1,   ,537.2,1117,may reopen
+Amador,2,2,3,3.3,2,10.0,27,10.0,   ,500.2,38531,may reopen
+Butte,1,1,3,3.9,1,10.9,218,14.3,0.763,401.6,217769,may not reopen
+Calaveras,3,2,3,4.5,2,12.6,39,12.6,   ,284.2,44289,may reopen
+Colusa*,2,1,1,10.3,2,17.7,28,17.7,   ,214.4,22593,may not reopen
+Contra Costa,1,1,3,3.7,1,9.7,1063,13.1,0.744,411.6,1160099,may not reopen
+Del Norte*,2,1,3,3.4,1,22.3,43,22.3,   ,657.8,27558,may not reopen
+El Dorado,1,1,2,6.0,1,11.7,159,11.8,0.997,274.2,193098,may not reopen
+Fresno,1,1,1,8.4,1,17.2,1334,18.5,0.933,308.7,1032227,may not reopen
+Glenn,1,1,1,8.9,1,22.9,47,22.9,   ,318.8,29348,may not reopen
+Humboldt**,2,1,3,2.3,2,6.1,65,6.9,0.874,340.8,134098,may not reopen
+Imperial,1,1,1,15.6,1,39.4,827,61.6,0.639,469.3,191649,may not reopen
+Inyo,3,3,3,4.6,3,10.8,14,10.8,   ,235.3,18453,may reopen
+Kern,1,1,1,10.6,1,27.4,1789,27.6,0.995,275.1,927251,may not reopen
+Kings,1,1,2,5.0,1,11.2,246,22.5,0.500,551.8,156444,may not reopen
+Lake,2,2,3,4.4,2,9.2,42,9.2,   ,260.5,64871,may reopen
+Lassen*,3,1,3,3.2,1,20.4,43,20.4,   ,583.0,30065,may not reopen
+Los Angeles,1,1,2,6.6,1,16.0,22907,31.9,0.500,632.7,10257557,may not reopen
+Madera,1,1,2,7.8,1,18.7,219,19.5,0.956,296.6,160089,may not reopen
+Marin,2,2,4,1.4,3,3.3,107,5.9,0.556,514.6,260800,may reopen
+Mariposa,4,3,4,1.4,3,6.4,8,6.4,   ,412.6,17795,may reopen
+Mendocino,1,1,3,4.4,1,14.5,90,14.5,   ,351.0,88439,may not reopen
+Merced,1,1,2,7.2,1,20.5,464,23.1,0.889,332.6,287420,may not reopen
+Modoc,2,3,3,4.9,3,16.6,11,16.6,   ,123.6,9475,may reopen
+Mono,2,2,3,3.3,3,8.2,8,8.2,   ,314.1,13961,may reopen
+Monterey,1,1,2,7.8,1,18.7,741,23.6,0.793,384.9,448732,may not reopen
+Napa,1,1,3,4.2,1,11.2,219,22.4,0.500,583.8,139652,may not reopen
+Nevada,1,1,2,5.7,1,22.4,155,22.4,   ,441.1,98710,may not reopen
+Orange,1,1,2,6.8,1,17.2,4575,20.2,0.850,354.1,3228519,may not reopen
+Placer,1,1,2,6.1,1,16.2,482,17.2,0.941,304.6,400434,may not reopen
+Plumas,2,2,3,4.5,2,21.1,28,21.1,   ,548.2,18997,may reopen
+Riverside,1,1,1,9.9,1,27.2,5857,33.9,0.803,379.6,2468145,may not reopen
+Sacramento,1,1,2,7.3,1,20.0,2472,22.5,0.886,334.6,1567975,may not reopen
+San Benito,1,1,2,6.5,1,22.8,102,22.8,   ,403.0,64022,may not reopen
+San Bernardino,1,1,1,13.7,1,31.2,7821,50.4,0.618,480.3,2217398,may not reopen
+San Diego,1,1,3,3.1,1,13.1,5076,21.5,0.611,484.4,3370418,may not reopen
+San Francisco,2,2,4,1.8,2,5.7,708,11.3,0.500,777.6,892280,may reopen
+San Joaquin,1,1,2,6.0,1,14.5,774,14.1,1.026,254.4,782545,may not reopen
+San Luis Obispo,1,1,3,4.4,1,10.4,405,20.7,0.500,651.5,278862,may not reopen
+San Mateo,2,2,3,2.3,2,5.8,634,11.6,0.500,676.7,778001,may reopen
+Santa Barbara,1,1,3,3.2,1,7.3,315,9.9,0.736,416.0,456373,may not reopen
+Santa Clara,1,1,3,3.0,1,7.7,2133,15.5,0.500,587.5,1967585,may not reopen
+Santa Cruz,1,1,3,4.7,1,11.3,351,18.3,0.620,479.7,273999,may not reopen
+Shasta,1,1,1,9.1,1,33.8,645,51.8,0.653,461.5,177925,may not reopen
+Sierra,3,3,3,3.3,4,4.6,1,4.6,   ,279.8,3115,may reopen
+Siskiyou,1,1,1,9.8,1,28.6,88,28.6,   ,333.8,43956,may not reopen
+Solano,1,1,2,5.4,1,13.2,457,14.7,0.898,327.9,444255,may not reopen
+Sonoma,1,1,3,3.6,1,8.7,455,13.1,0.666,454.6,496668,may not reopen
+Stanislaus,1,1,1,8.7,1,17.8,711,18.1,0.985,280.6,562303,may not reopen
+Sutter,1,1,1,16.6,1,39.7,294,39.7,   ,332.7,105747,may not reopen
+Tehama,1,1,1,13.4,1,46.6,215,46.6,   ,343.7,65885,may not reopen
+Trinity,1,1,1,10.9,2,33.2,31,33.2,   ,352.0,13354,may not reopen
+Tulare,1,1,2,8.0,1,21.1,804,23.7,0.889,332.8,484423,may not reopen
+Tuolumne,1,1,1,8.6,1,46.1,169,46.1,   ,698.0,52351,may not reopen
+Ventura,1,1,2,5.4,1,12.3,1467,24.6,0.500,550.7,852747,may not reopen
+Yolo,1,1,2,7.2,1,20.9,352,22.5,0.930,310.8,223612,may not reopen
+Yuba,1,1,1,11.8,1,24.0,133,24.0,   ,260.2,79290,may not reopen

@@ -1,0 +1,42 @@
+Field,Value
+Title,COVID-19 Blueprint for a Safer Economy Data Chart
+URL,covid-19-blueprint-for-a-safer-economy-data-chart
+Description,"California has a new blueprint for reducing COVID-19 in the state with revised criteria for loosening and tightening restrictions on activities. Every county in California is assigned to a tier based on its test positivity and adjusted case rate for tier assignment. Additionally, a new health equity metric took effect on October 6, 2020. In order to advance to the next less restrictive tier, each county will need to meet an equity metric or demonstrate targeted investments to eliminate disparities in levels of COVID-19 transmission, depending on its size. The California Health Equity Metric is designed to help guide counties in their continuing efforts to reduce COVID-19 cases in all communities and requires more intensive efforts to prevent and mitigate the spread of COVID-19 among Californians who have been disproportionately impacted by this pandemic.
+
+Please see https://www.cdph.ca.gov/Programs/CID/DCDC/Pages/COVID-19/COVID19CountyMonitoringOverview.aspx for more information.
+
+Also, in lieu of a Data Dictionary, please refer to the detailed explanation of the data columns in Appendix 1 of the above webpage.
+
+Because this data is in machine-readable format, the merged headers at the top of the source spreadsheet have not been included:
+
+- The first 8 columns are under the header ""County Status as of Tier Assignment""
+
+-  The next 3 columns are under the header ""Current Data Week Tier and Metric Tiers for Data Week""
+
+-  The next 4 columns are under the header ""Case Rate Adjustment Factors""
+
+-  The next column is under the header ""Small County Considerations""
+
+-  The last 5 columns are under the header ""Health Equity Framework Parameters"""
+Tags,"blueprint,california department of public health,coronavirus,county,covid,covid-19,covid19,economy,safe,safer"
+License,
+Topic,
+Organization,California Department of Public Health
+Public Access Level,Public
+Rights,No restrictions on public use
+Program Contact Name,California Department of Public Health
+Program Contact Email,OpenData@cdph.ca.gov
+Author,
+Homepage URL,
+Frequency,Weekly
+Temporal Coverage,2020
+Granularity,
+Geographic Coverage Location,
+Spatial,
+Data Standard,
+Language,
+Source Link,https://www.cdph.ca.gov/Programs/CID/DCDC/Pages/COVID-19/COVID19CountyMonitoringOverview.aspx
+Additional Information,
+Related Resources,
+Secondary Sources,
+Citation,
