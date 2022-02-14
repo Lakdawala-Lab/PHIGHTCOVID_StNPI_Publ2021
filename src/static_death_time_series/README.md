@@ -7,7 +7,7 @@ Date: April 2021
 
 # state_static_death_time_series
 
-state_static_time_series imports a merged dataset with daily new COVID-19 case/death counts and state level NPI and 
+state_death_static_time_series imports a merged dataset with daily new COVID-19 case/death counts and state level NPI and 
 a US population dataset to produce a static time series graph.
 
 
