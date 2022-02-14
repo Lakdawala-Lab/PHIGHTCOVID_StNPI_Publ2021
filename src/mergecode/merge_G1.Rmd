@@ -25,8 +25,8 @@ library("lhs")
 
 
 ```{r}
-covid = data.frame(read_excel("../../data/raw/COVID_CASES_20210413_pop.xlsx"))
-covid.G1 = data.frame(read_excel("../../data/raw/ALL_G1_data_04112021.xlsx"))
+covid = data.frame(read_excel("../../data/raw/COVID_CASES_20211208_pop.xlsx"))
+covid.G1 = data.frame(read_excel("../../data/raw/ALL_G1_data_12102021.xlsx"))
 ```
 
 
