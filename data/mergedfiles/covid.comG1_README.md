@@ -4,15 +4,15 @@ NPI data collected by: Annika Avery, Erica Liang, Elizabeth McGrady
 JHU case data accessed and preprocessed by: Annika Avery
 Affiliation: University of Pittsburgh
 Project: PHIGHT COVID
-Date: Data last accessed April 2021 
+Date: Data last accessed December 2021 
 
-NPI data acquired from March 2020 - March 31, 2021
-JHU Case data last accessed April 2021
+NPI data acquired from March 2020 - December 31, 2021
+JHU Case data last accessed December 2021
 
 
-covid.comG1.csv was created by merging data/raw/ALL_G1_data_04112021.xlsx with data/raw/COVID_CASES_04132021_pop.csv in merge_G1.Rmd
+covid.comG1.csv was created by merging data/raw/ALL_G1_data_12102021.xlsx with data/raw/COVID_CASES_20211208_pop.csv in merge_G1.Rmd
 
-COVID_CASES_04132021_pop.csv:
+COVID_CASES_20211208_pop.csv:
 
 Data from COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University. 
 
