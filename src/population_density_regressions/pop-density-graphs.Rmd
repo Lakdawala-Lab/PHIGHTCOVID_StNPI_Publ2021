@@ -1,0 +1,244 @@
+---
+title: "pop-density-graphs"
+author: "Meredith Shephard"
+date: "10/13/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. import libraries
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(readxl)
+library(broom)
+
+```
+
+2. import datasets
+
+```{r}
+pop <- read_csv("../../data/cleaned/USA_Counties_Data.csv")
+jhu_cnty_death <- read_csv("../../data/raw/20211208_time_series_covid19_deaths_US.csv")
+```
+
+3. format and select population data columns
+
+```{r}
+pop$COUNTY_NAME <- toupper(pop$COUNTY_NAME)
+pop$STATE_NAME <- toupper(pop$STATE_NAME)
+pop <- pop %>%
+  dplyr::select("COUNTY_NAME", "STATE_NAME", "POPULATION", "POP_SQMI")
+
+```
+
+Functions to create desired population density graphs:
+
+4.0 - population density vs. cummulative covid-19 deaths for ALL US counties - no need to change
+
+```{r}
+all_us_death <- function(us_date1, us_date2){
+  #rename columns
+  names(jhu_cnty_death)[names(jhu_cnty_death)=="Admin2"] <- "COUNTY"
+  names(jhu_cnty_death)[names(jhu_cnty_death)=="Province_State"] <- "STATE"
+  jhu_cnty_death$COUNTY <- toupper(jhu_cnty_death$COUNTY)
+  jhu_cnty_death$STATE <- toupper(jhu_cnty_death$STATE)
+  
+  us_death_long <- gather(jhu_cnty_death, DATE, CUMDEATHS, us_date1:us_date2, factor_key=TRUE)
+  
+  #death_long$DATE <- as.Date(death_long$DATE, format="%m/%d/%y")
+  
+  us_death_long <- us_death_long %>%
+    select("COUNTY", "STATE", "DATE", "CUMDEATHS")%>%
+    filter(DATE==us_date2)
+  
+  us_death_wpop <- us_death_long %>%
+    left_join(pop, by=c("COUNTY"="COUNTY_NAME", "STATE"="STATE_NAME"))
+  
+  us_death_wpop <-us_death_wpop %>%
+  mutate(NormCumDeaths = round(CUMDEATHS/(POPULATION/50000)))
+  
+  us_graph <- ggplot(data = us_death_wpop, aes(x=log(POP_SQMI), y=NormCumDeaths)) +
+  geom_point()+
+  geom_smooth(method=lm)+
+  labs(x="Log of County Population Density", y="County Cummulative Deaths (per 50,000 ppl)", title = "Normalized Cum Deaths vs Pop. Density for all US counties") 
+}
+```
+
+**4.1 parameters for 4.0 - choose date range 
+
+```{r}
+us_date1 = "3/1/20"
+us_date2 = "4/12/21"
+
+us_graph <- all_us_death(us_date1, us_date2)
+
+us_graph
+```
+
+
+
+5.0 - population density vs cumulative covid-19 death regression graphs for each individual state 
+
+```{r}
+death <- function(state, date1, date2){
+  #rename columns
+  names(jhu_cnty_death)[names(jhu_cnty_death)=="Admin2"] <- "COUNTY"
+  names(jhu_cnty_death)[names(jhu_cnty_death)=="Province_State"] <- "STATE"
+  jhu_cnty_death$COUNTY <- toupper(jhu_cnty_death$COUNTY)
+  jhu_cnty_death$STATE <- toupper(jhu_cnty_death$STATE)
+  pop$COUNTY_NAME <- toupper(pop$COUNTY_NAME)
+  pop$STATE_NAME <- toupper(pop$STATE_NAME)
+  
+  death_long <- gather(jhu_cnty_death, DATE, CUMDEATHS, date1:date2, factor_key=TRUE)
+  
+  #death_long$DATE <- as.Date(death_long$DATE, format="%m/%d/%y")
+  
+
+  
+death_long_date1 <- death_long %>%
+    dplyr::select("COUNTY", "STATE", "DATE", "CUMDEATHS")%>%
+    filter(DATE==date1 & STATE==state)
+
+death_long_date2 <- death_long%>%
+  dplyr::select("COUNTY", "STATE", "DATE", "CUMDEATHS")%>%
+  filter(DATE==date2 & STATE==state)
+
+names(death_long_date2)[names(death_long_date2)=="CUMDEATHS"] <- "CUMDEATHS2"
+
+new_death_long <- death_long_date1%>%
+  left_join(death_long_date2, by=c("COUNTY", "STATE"))%>%
+  mutate(NewCumDeaths = round(CUMDEATHS2 - CUMDEATHS))
+   
+  
+  death_wpop <- new_death_long %>%
+    left_join(pop, by=c("COUNTY"="COUNTY_NAME", "STATE"="STATE_NAME"))
+  
+  death_wpop <-death_wpop %>%
+    mutate(NormCumDeaths = round(NewCumDeaths/(POPULATION/50000)),
+           log_pop_density = log(POP_SQMI))%>%
+    na.omit()
+  
+  
+  
+  regression <- lm(NormCumDeaths~log(POP_SQMI), data=death_wpop)
+  
+  state_graph <- ggplot(data = death_wpop, aes(x=log(POP_SQMI), y=NormCumDeaths)) +
+  geom_point()+
+  geom_smooth(method=lm)+
+ labs(x="Log of County Population Density", y="County Cummulative Deaths (per 50,000 ppl)",  
+       subtitle=paste(" Slope =",signif(regression$coef[[2]], 5)))+
+    ggtitle(paste("Normalized Cumulative Deaths vs Population Density"))
+  summary(regression)
+}
+```
+
+
+**5.1 - parameters for 5.0- choose date range: 
+
+```{r}
+state = "WEST VIRGINIA"
+date1 = "6/7/20"
+date2 = "3/31/21"
+
+state_graph <- death(state, date1, date2)
+
+
+state_graph
+
+write_csv(state_graph, paste(state, "_stats_june7.csv"))
+
+#ggsave(paste(state,"_death_by_pop_figure.png"), state_graph, height=5, width=7)
+```
+
+
+6.0 - Create data frame for pop density stats
+
+```{r}
+death <- function(date1, date2){
+  #rename columns
+  names(jhu_cnty_death)[names(jhu_cnty_death)=="Admin2"] <- "COUNTY"
+  names(jhu_cnty_death)[names(jhu_cnty_death)=="Province_State"] <- "STATE"
+  jhu_cnty_death$COUNTY <- toupper(jhu_cnty_death$COUNTY)
+  jhu_cnty_death$STATE <- toupper(jhu_cnty_death$STATE)
+  pop$COUNTY_NAME <- toupper(pop$COUNTY_NAME)
+  pop$STATE_NAME <- toupper(pop$STATE_NAME)
+  
+  death_long <- gather(jhu_cnty_death, DATE, CUMDEATHS, date1:date2, factor_key=TRUE)
+  
+  #death_long$DATE <- as.Date(death_long$DATE, format="%m/%d/%y")
+  
+
+  
+death_long_date1 <- death_long %>%
+    dplyr::select("COUNTY", "STATE", "DATE", "CUMDEATHS")%>%
+    filter(DATE==date1)
+
+death_long_date2 <- death_long%>%
+  dplyr::select("COUNTY", "STATE", "DATE", "CUMDEATHS")%>%
+  filter(DATE==date2)
+
+names(death_long_date2)[names(death_long_date2)=="CUMDEATHS"] <- "CUMDEATHS2"
+
+new_death_long <- death_long_date1%>%
+  left_join(death_long_date2, by=c("COUNTY", "STATE"))%>%
+  mutate(NewCumDeaths = round(CUMDEATHS2 - CUMDEATHS))
+   
+  
+  death_wpop <- new_death_long %>%
+    left_join(pop, by=c("COUNTY"="COUNTY_NAME", "STATE"="STATE_NAME"))
+  
+  death_wpop <-death_wpop %>%
+    mutate(NormCumDeaths = round(NewCumDeaths/(POPULATION/50000)))%>%
+    na.omit()%>%
+    filter(STATE != "ALASKA" & STATE != "DISTRICT OF COLUMBIA")
+  
+  regression <- death_wpop %>%
+    group_by(STATE)%>%
+    do(tidy(lm(NormCumDeaths~log(POP_SQMI), data = .)))%>%
+    slice(2)
+    
+  
+}
+```
+
+**6.1 - parameters - choose date range for analysis and change output name:
+
+```{r}
+date1 = "5/1/20"
+date2 = "3/31/21"
+
+regression_stats <- death(date1, date2)
+
+regression_stats
+
+write_csv(regression_stats, "regression_stats_may1.csv")
+```
+
+
+7. Create Dot plot for pop density slope 
+
+```{r}
+pop_slope <- read_csv("../../../data/inputs/st-popdensity-slope-data.csv")
+library(ggthemes)
+col_theme <- c("Positive"="#009E73","No Relationship"="#0072B2","Negative"="#D55E00")
+
+pop_slope_dotplot <- pop_slope%>%
+  drop_na(POP_SLOPE)%>%
+  ggplot(aes(POP_SLOPE))+
+  geom_dotplot(aes(y=log(POP_SQMI), fill=POP_SLOPE), binaxis = 'y', stackdir='center')+
+  guides(fill=FALSE)+
+  labs(y="Log of Population Density", x = "Relationship between Pop Density and Cummulative COVID Deaths", title="Log of Population Density vs Pop Density Relationship")+
+  scale_fill_manual(values=col_theme)
+
+pop_slope_dotplot
+
+ggsave("pop-slope-dotplot.png", pop_slope_dotplot, height=7, width=9)
+```
+
+
+
