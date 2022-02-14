@@ -8,7 +8,7 @@ Date: April 2021
 
 # merge_G1.Rmd 
 
-mergeG1.Rmd imports daily new COVID-19 case counts COVID_CASES_20210413_pop.xlsx and state level NPI  ALL_G1_data_04112021.xlsx to produce a merged dataset (covid.comG1.csv) to be used to create B splines in the BSplineRegressions.Rmd file.
+mergeG1.Rmd imports daily new COVID-19 case counts COVID_CASES_20211208_pop.xlsx and state level NPI  ALL_G1_data_12102021.xlsx to produce a merged dataset (covid.comG1.csv) to be used to create B splines in the BSplineRegressions.Rmd file.
 
 
 ## Prerequisites
