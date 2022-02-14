@@ -11,7 +11,7 @@ library(chron)
 
 read and select data
 ```{r, warning=FALSE,message=FALSE}
-data <- read_csv("../../data/cleaned/NPI_cases_04162021.csv") %>% 
+data <- read_csv("../../data/cleaned/NPI_cases_12102021.csv") %>% 
   select(c("STATE", "DATE", "NEWCONFIRMED", "EVENT_CATG_S",
            "SCORE", "SHORT_DESCRIPT"))
 state_pop_dt <- read_csv("../../data/cleaned/USA_States_Data.csv") %>% 
