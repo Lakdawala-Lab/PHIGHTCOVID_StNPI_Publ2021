@@ -8,12 +8,12 @@ Date: April 2021
 
 # BSplineRegressions.Rmd 
 
-BSplineRgressions.Rmd imports a merged dataset (covid.comG1.csv) created in the merge code file (merge_G1.Rmd) with daily new COVID-19 case counts and state level NPI and a US population dataset to produce B splines.
+BSplineRegressions.Rmd imports a merged dataset (covid.comG1.csv) created in the merge code file (merge_G1.Rmd) with daily new COVID-19 case counts and state level NPI and a US population dataset to produce B splines.
 
 
 ## Prerequisites
 
-1. You need to Download R-studio to successfully run the state_time_series_interactive file.
+1. You need to Download R-studio to successfully run the BsplineRegressions.Rmd file.
 
 2. All the libraries mentioned in code chunk 1 should be installed before the rest of the file.
 To install a library, type in the console, install.packages(""), where the library name goes
